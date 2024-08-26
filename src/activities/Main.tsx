@@ -1,8 +1,14 @@
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useFlow } from '../stackflow';
+import { useCallback, useEffect } from 'react';
 
 const MainActivity = () => {
 	const { push } = useFlow();
+
+	const onClickSave = useCallback(() => {
+		console.log((window as any).fs);
+		(window as any).fs.saveData('Hello, World!');
+	}, [(window as any)?.fs]);
 
 	return (
 		<AppScreen>
@@ -14,6 +20,8 @@ const MainActivity = () => {
 			>
 				Next
 			</button>
+
+			<button onClick={onClickSave}>저장</button>
 		</AppScreen>
 	);
 };

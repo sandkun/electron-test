@@ -5,9 +5,7 @@ import './lang/locale';
 import '@stackflow/plugin-basic-ui/index.css';
 import { Stack } from './stackflow';
 
-const root = ReactDOM.createRoot(
-	document.getElementById('root') as HTMLElement,
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
 	<React.StrictMode>

@@ -26,21 +26,34 @@
     "react-i18next": "^15.0.1",
     "react-scripts": "5.0.1",
     "sass": "^1.77.8",
-    "sqlite3": "^5.1.7",
+    "ts-node": "^10.9.2",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
   "main": "dist/app/Main.js",
   "homepage": "./",
+  "build": {
+    "appId": "com.hotel-kiosk.app",
+    "files": [
+      "build/**/*",
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "./output"
+    },
+    "extraMetadata": {
+      "main": "dist/app/Main.js"
+    }
+  },
   "scripts": {
     "start": "concurrently \"yarn react-start\" \"wait-on http://localhost:3000 && yarn electron-start\"",
-    "web": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "react-start": "npx tsc && BROWSER=none react-scripts start",
-    "electron-start": "ELECTRON_START_URL=http://localhost:3000 electron .",
-    "electron-pack": "yarn build && electron-builder build -c.extraMetadata.main=build/Main.js"
+    "build": "tsc && yarn react-build && electron-builder",
+    "react-start": "BROWSER=none react-scripts start",
+    "react-build": "react-scripts build",
+    "electron-start": "tsc && electron ."
   },
   "eslintConfig": {
     "extends": [
@@ -63,6 +76,8 @@
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "concurrently": "^8.2.2",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
     "electron": "^32.0.0",
     "electron-builder": "^24.13.3",
     "eslint": "^9.9.0",

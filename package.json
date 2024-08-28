@@ -1,6 +1,6 @@
 {
   "name": "hotel-kiosk",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -80,6 +80,8 @@
     "cross-env": "^7.0.3",
     "electron": "^32.0.0",
     "electron-builder": "^24.13.3",
+    "electron-log": "^5.1.7",
+    "electron-updater": "^6.2.1",
     "eslint": "^9.9.0",
     "eslint-plugin-react": "^7.35.0",
     "globals": "^15.9.0",

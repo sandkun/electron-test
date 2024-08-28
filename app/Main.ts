@@ -1,7 +1,24 @@
-import { app, BrowserWindow } from 'electron';
+import { app, autoUpdater, BrowserWindow } from 'electron';
 import path from 'path';
 import url from 'url';
+import log from 'electron-log';
 import './IpcHandler';
+
+autoUpdater.on('checking-for-update', () => {
+	log.info('업데이트 확인중...');
+});
+
+autoUpdater.on('update-available', (info: any) => {
+	log.info('업데이트 가능합니다.');
+});
+
+autoUpdater.on('update-not-available', (info: any) => {
+	log.info('현재 최신버전 입니다.', info);
+});
+
+autoUpdater.on('update-downloaded', (info) => {
+	log.info('업데이트가 완료되었습니다.');
+});
 
 function createWindow() {
 	/*

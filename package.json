@@ -20,6 +20,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-prettier": "^5.2.1",
+    "electron-updater": "^6.2.1",
     "i18next": "^23.14.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -32,6 +33,11 @@
   },
   "main": "dist/app/Main.js",
   "homepage": "./",
+  "repository": {
+    "type": "git",
+    "url": "git+http://gitlab.plitsoft.com/plitsoft/hotel-kiosk/hotel-kiosk-electron.git",
+    "release": "latest"
+  },
   "build": {
     "appId": "com.hotel-kiosk.app",
     "files": [
@@ -50,10 +56,11 @@
   },
   "scripts": {
     "start": "concurrently \"yarn react-start\" \"wait-on http://localhost:3000 && yarn electron-start\"",
-    "build": "tsc && yarn react-build && electron-builder",
+    "build": "tsc && yarn react-build && electron-builder --publish always",
     "react-start": "BROWSER=none react-scripts start",
     "react-build": "react-scripts build",
-    "electron-start": "tsc && electron ."
+    "electron-start": "tsc && electron .",
+    "deploy": "electron-builder --publish always"
   },
   "eslintConfig": {
     "extends": [
@@ -81,7 +88,6 @@
     "electron": "^32.0.0",
     "electron-builder": "^24.13.3",
     "electron-log": "^5.1.7",
-    "electron-updater": "^6.2.1",
     "eslint": "^9.9.0",
     "eslint-plugin-react": "^7.35.0",
     "globals": "^15.9.0",

@@ -1,29 +1,53 @@
-import { app, autoUpdater, BrowserWindow } from 'electron';
+import { app, BrowserWindow, dialog } from 'electron';
 import path from 'path';
 import url from 'url';
-import log from 'electron-log';
 import './IpcHandler';
+import { autoUpdater } from 'electron-updater';
+
+let win: BrowserWindow | null = null;
 
 autoUpdater.on('checking-for-update', () => {
-	log.info('업데이트 확인중...');
+	dialog.showMessageBox({
+		type: 'info',
+		title: '업데이트 확인',
+		message: '업데이트 확인중입니다',
+		defaultId: 0,
+	});
 });
 
 autoUpdater.on('update-available', (info: any) => {
-	log.info('업데이트 가능합니다.');
+	dialog.showMessageBox({
+		type: 'info',
+		title: '업데이트 확인',
+		message: '업데이트가 가능합니다.',
+		defaultId: 0,
+	});
 });
 
 autoUpdater.on('update-not-available', (info: any) => {
-	log.info('현재 최신버전 입니다.', info);
+	dialog.showMessageBox({
+		type: 'info',
+		title: '업데이트 확인',
+		message: '최신버전 입니다.',
+		defaultId: 0,
+	});
 });
 
 autoUpdater.on('update-downloaded', (info) => {
-	log.info('업데이트가 완료되었습니다.');
+	dialog
+		.showMessageBox({
+			type: 'info',
+			title: '업데이트 확인',
+			message: '업데이트가 완료되었습니다. 재시작해주세요.',
+			defaultId: 0,
+		})
+		.then((res) => {
+			autoUpdater.quitAndInstall();
+		});
 });
 
 function createWindow() {
-	/*
-	 * */
-	const win = new BrowserWindow({
+	win = new BrowserWindow({
 		width: 1920,
 		height: 1080,
 		webPreferences: {
@@ -52,4 +76,7 @@ function createWindow() {
 	win.loadURL(startUrl);
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+	createWindow();
+	autoUpdater.checkForUpdates();
+});

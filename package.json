@@ -1,6 +1,7 @@
 {
   "name": "hotel-kiosk",
   "version": "0.0.1",
+  "author": "Plitsoft",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -35,11 +36,11 @@
   "homepage": "./",
   "repository": {
     "type": "git",
-    "url": "git+http://gitlab.plitsoft.com/plitsoft/hotel-kiosk/hotel-kiosk-electron.git",
-    "release": "latest"
+    "url": "git+http://gitlab.plitsoft.com/plitsoft/hotel-kiosk/hotel-kiosk-electron.git"
   },
   "build": {
     "appId": "com.hotel-kiosk.app",
+    "productName": "Hotel Kiosk",
     "files": [
       "build/**/*",
       "dist/**/*",

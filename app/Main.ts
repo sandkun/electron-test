@@ -33,6 +33,15 @@ autoUpdater.on('update-not-available', (info: any) => {
 	});
 });
 
+autoUpdater.on('error', (err) => {
+	dialog.showMessageBox({
+		type: 'info',
+		title: '업데이트 확인',
+		message: '업데이트 중 오류가 발생했습니다.' + err,
+		defaultId: 0,
+	});
+});
+
 autoUpdater.on('update-downloaded', (info) => {
 	dialog
 		.showMessageBox({

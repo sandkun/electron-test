@@ -3,6 +3,7 @@ import path from 'path';
 import url from 'url';
 import './IpcHandler';
 import { autoUpdater } from 'electron-updater';
+autoUpdater.requestHeaders = { 'PRIVATE-TOKEN': 'glpat-vQgoviFDV5ryyWFukYwy' };
 
 let win: BrowserWindow | null = null;
 

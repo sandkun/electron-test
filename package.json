@@ -1,7 +1,8 @@
 {
   "name": "hotel-kiosk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Plitsoft",
+  "description": "Electron updater",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -53,6 +54,10 @@
     },
     "extraMetadata": {
       "main": "dist/app/Main.js"
+    },
+    "publish": {
+      "provider": "generic",
+      "url": "https://gitlab.com/api/v4/projects/63/jobs/artifacts/main/raw/dist?job=build"
     }
   },
   "scripts": {
